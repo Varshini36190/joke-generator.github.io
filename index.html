@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f3e5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ab47bc;
+            margin-bottom: 20px;
+        }
+        .joke-card {
+            background: linear-gradient(135deg, #ce93d8, #ab47bc);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            min-height: 100px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s forwards;
+            position: relative;
+        }
+        .joke-card::before {
+            content: '😂';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 30px;
+            opacity: 0.5;
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #ab47bc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+       
+      
+        @media (max-width: 600px) {
+            .joke-card {
+                max-width: 90%;
+                font-size: 16px;
+                padding: 15px 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Joke Generator</h1>
+    <div class="joke-card" id="joke-card">Click "Tell Me a Joke" to start laughing!</div>
+    <div class="buttons">
+        <button onclick="tellJoke()">Tell Me a Joke</button>
+        <button onclick="resetJoke()">Reset</button>
+    </div>
+    <script>
+        const jokes = [
+            "Why was the computer cold? It left its Windows open.",
+            "Why don’t robots ever get tired? They recharge their batteries.",
+            "How do smartphones say goodbye? They hang up.",
+            "Why don’t phones play hide and seek? Because they always ring.",
+            "Why did the student eat his homework? Because the teacher said it was a piece of cake.",
+            "Why did the math book look sad? Because it had too many problems.",
+            "What did one wall say to the other wall? I’ll meet you at the corner.",
+            "Why was the baby strawberry crying? Because its parents were in a jam.",
+
+        ];
+        const jokeCard = document.getElementById('joke-card');
+
+        function tellJoke() {
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            jokeCard.style.animation = 'none'; 
+            jokeCard.offsetHeight; 
+            jokeCard.style.animation = 'slideIn 0.5s forwards';
+            jokeCard.textContent = randomJoke;
+        }
+
+        function resetJoke() {
+            jokeCard.style.animation = 'none';
+            jokeCard.offsetHeight;
+            jokeCard.style.animation = 'slideIn 0.5s forwards';
+            jokeCard.textContent = 'Click "Tell Me a Joke" to start laughing!';
+        }
+    </script>
+</body>
+</html>
